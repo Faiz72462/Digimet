@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block title %}<title>Account Group</title>{%
+endblock %} {% block heading %}
+<h2 class="ms-3 mb-0">Account Group</h2>
+{% endblock %} {%block content%}
+<div class="table-responsive">
+  <table class="table">
+    <!-- table content     -->
+  </table>
+</div>
+<div class="pagination-container row">
+  <div class="col-md-6">
+    <div>
+      Showing
+      <select class="form-control d-inline-block w-auto" id="itemsPerPage">
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+      of 50
+    </div>
+  </div>
+  <div class="col-md-6">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-md-end">
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">4</a></li>
+        <li class="page-item"><a class="page-link" href="#">5</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+{%endblock%}

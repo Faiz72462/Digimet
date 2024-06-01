@@ -1,0 +1,319 @@
+{% extends 'base.html' %} {% block title %} Sales Order Info {% endblock %}
+<!-- heading -->
+{%block heading %} Sales Order Info{%endblock%}
+<!-- content -->
+{%block content%}
+<div
+  style="
+    border: 0.5px solid rgb(196, 191, 191);
+    border-radius: 10px;
+    padding: 10px;
+  "
+>
+  <div class="row" style="margin: 2% 0; text-align: left">
+    <div class="col-lg-6">
+      <div class="mb-3">
+        <span class="h6">Quotation number:</span>
+        <span></span>
+      </div>
+      <div class="mb-3">
+        <span class="h6">Customer:</span>
+        <span></span>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="mb-3">
+        <span class="h6">Billing Address:</span>
+        <span>PLOT NO. E58 SECTOR 5&6 TRONICACITY</span>
+      </div>
+      <div class="mb-3">
+        <span class="h6">Shippingg Address:</span>
+        <span>LONI GHAZIABAD</span>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+  <h5 class="mb-4 ml-3">Sales Products</h5>
+  <div class="table-responsive">
+    <table class="table">
+      <thead style="background-color: #f1f4f9">
+        <tr>
+          <th>Product</th>
+          <th>Description</th>
+          <th>Quantity</th>
+          <th>Unit Price</th>
+          <th>Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Baghban</td>
+          <td>Children Toy</td>
+          <td>50</td>
+          <td>36</td>
+          <td>1800.00</td>
+        </tr>
+
+        <!-- Repeat other rows as necessary -->
+      </tbody>
+    </table>
+  </div>
+  <h5 class="mb-4 ml-3">Production Requirements/Material</h5>
+  <div class="table-responsive">
+    <table class="table">
+      <thead style="background-color: #f1f4f9">
+        <tr>
+          <th>Material Unit</th>
+          <th>Quantity Per Piece</th>
+          <th>Quantity</th>
+          <th>Required</th>
+          <th>Allocated</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+
+        <!-- Repeat other rows as necessary -->
+      </tbody>
+    </table>
+  </div>
+  <h5 class="mb-4 ml-3">Post Production Requirements/Material</h5>
+  <div class="table-responsive">
+    <table class="table">
+      <thead style="background-color: #f1f4f9">
+        <tr>
+          <th>Material</th>
+          <th>Total Quantity</th>
+          <th>Cutting</th>
+          <th>Cutting Unit</th>
+          <th>Printing</th>
+          <th>Stitching</th>
+          <th>Stitching Unit</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+
+        <!-- Repeat other rows as necessary -->
+      </tbody>
+    </table>
+  </div>
+  <h5 class="mb-4 ml-3">Produced Material</h5>
+  <div class="table-responsive">
+    <table class="table">
+      <thead style="background-color: #f1f4f9">
+        <tr>
+          <th>Sales Order</th>
+          <th>Product</th>
+          <th>Product Unit</th>
+          <th>Total Processed Now</th>
+          <th>Quantity Processed</th>
+          <th>Quantity Left</th>
+          <th>Order Quantity</th>
+          <th>Production_Name</th>
+          <th>Production_Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+
+        <!-- Repeat other rows as necessary -->
+      </tbody>
+    </table>
+  </div>
+  <h5 class="mb-4 ml-3">Product Ready To be Packed/Dispatched</h5>
+  <div class="table-responsive">
+    <table class="table">
+      <thead style="background-color: #f1f4f9">
+        <tr>
+          <th>Sales Order</th>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Cost Of Single</th>
+          <th>Total Cost</th>
+          <th>Packed</th>
+          <th>Dispatched</th>
+          <th>Entry Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+
+        <!-- Repeat other rows as necessary -->
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <h5 class="mb-4 ml-3">Production Steps Involved</h5>
+    <div class="row">
+      <div class="mb-3 col-lg-4">
+        <p class="f-weight">Material</p>
+        <select class="form-control" aria-label="Default select example">
+          <option>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="mb-3 col-lg-4">
+        <p class="f-weight">Cutting</p>
+        <select class="form-control" aria-label="Default select example">
+          <option>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="mb-3 col-lg-4">
+        <p class="f-weight">Cutting Unit</p>
+        <select class="form-control" aria-label="Default select example">
+          <option>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3 col-lg-4">
+        <p class="f-weight">Printing</p>
+        <select class="form-control" aria-label="Default select example">
+          <option>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="mb-3 col-lg-4">
+        <p class="f-weight">Stitching</p>
+        <select class="form-control" aria-label="Default select example">
+          <option>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+      <div class="mb-3 col-lg-4">
+        <p class="f-weight">Stitching Unit</p>
+        <select class="form-control" aria-label="Default select example">
+          <option>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-5" style="text-align: right">
+    <div style="margin-top: 50px">
+      <button
+        style="border-radius: 10px"
+        type="button"
+        class="btn btn-primary"
+        data-mdb-ripple-init
+      >
+        <span style="margin: 0 15px">send</span
+        ><span>
+          <svg
+            width="36"
+            height="28"
+            viewBox="0 0 46 38"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="36" height="28" fill="black" />
+            <rect
+              width="1440"
+              height="1080"
+              transform="translate(-1338 -776)"
+              fill="#FAFAFA"
+            />
+            <rect
+              x="-1053.85"
+              y="-610.85"
+              width="1139.7"
+              height="868.7"
+              rx="13.85"
+              fill="white"
+              stroke="#B9B9B9"
+              stroke-width="0.3"
+            />
+            <rect
+              x="-119"
+              y="-8"
+              width="173"
+              height="54"
+              rx="12"
+              fill="#4880FF"
+            />
+            <rect width="46" height="38" rx="8" fill="#6E9AFF" />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M16.5051 19.316L21.4504 20.5523L22.6867 25.4976C22.8385 26.1048 23.668 26.187 23.936 25.6213L29.936 12.9546C30.2041 12.3885 29.6142 11.7985 29.0481 12.0667L16.3814 18.0667C15.8157 18.3347 15.8978 19.1641 16.5051 19.316ZM22.1618 19.3558L18.6357 18.4742L27.9319 14.0708L23.5284 23.367L22.6469 19.8408C22.5872 19.602 22.4007 19.4155 22.1618 19.3558Z"
+              fill="white"
+            />
+            <mask
+              id="mask0_0_1"
+              style="mask-type: luminance"
+              maskUnits="userSpaceOnUse"
+              x="16"
+              y="12"
+              width="15"
+              height="15"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M16.5051 19.316L21.4504 20.5523L22.6867 25.4976C22.8385 26.1048 23.668 26.187 23.936 25.6213L29.936 12.9546C30.2041 12.3885 29.6142 11.7985 29.0481 12.0667L16.3814 18.0667C15.8157 18.3347 15.8978 19.1641 16.5051 19.316ZM22.1618 19.3558L18.6357 18.4742L27.9319 14.0708L23.5284 23.367L22.6469 19.8408C22.5872 19.602 22.4007 19.4155 22.1618 19.3558Z"
+                fill="white"
+              />
+            </mask>
+            <g mask="url(#mask0_0_1)"></g>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+{%endblock%}

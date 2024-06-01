@@ -1,0 +1,173 @@
+{% extends 'base.html' %} {% block title %} Accepted Orders {% endblock %}
+<!-- heading -->
+{%block heading %} Accepted Orders{%endblock%}
+<!-- content -->
+{%block content%}
+<div
+  style="
+    border: 0.5px solid rgb(196, 191, 191);
+    border-radius: 10px;
+    padding: 10px;
+  "
+>
+  <div id="printableTable">
+    <div id="print" class="row" style="margin: 5% 10%">
+      <div class="col-lg-4">
+        <h6>Invoice Form:</h6>
+        <p class="mb-0">Virginia Walker</p>
+        <p class="mb-0">9694 Krajcik Locks Suite 635</p>
+      </div>
+      <div class="col-lg-4">
+        <h6>Invoice To:</h6>
+        <p class="mb-0">Virginia Walker</p>
+        <p class="mb-0">9694 Krajcik Locks Suite 635</p>
+      </div>
+      <div class="col-lg-4">
+        <span class="h6"> Invoice Date: </span>
+        <span>12 Nov 2016</span>
+        <br />
+        <span class="h6"> Due Date: </span>
+        <span>12 Nov 2016</span>
+      </div>
+    </div>
+    <!-- </div> -->
+    <div class="table-responsive">
+      <table class="table">
+        <thead style="background-color: #f1f4f9">
+          <tr>
+            <th>Serial Number</th>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Children Toy</td>
+            <td>Children Toy</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Children Toy</td>
+            <td>Children Toy</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Children Toy</td>
+            <td>Children Toy</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Children Toy</td>
+            <td>Children Toy</td>
+            <td>2</td>
+          </tr>
+
+          <!-- Repeat other rows as necessary -->
+        </tbody>
+      </table>
+      <div style="float: right; margin-right: 90px">
+        <h6 class="d-inline">Total:</h6>
+        <span class="h6">$4688</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-5" style="text-align: right">
+    <div style="margin-top: 50px">
+      <button
+        onclick="printTable()"
+        style="border-radius: 10px"
+        type="button"
+        class="btn btn-outline-secondary m"
+      >
+        <svg
+          width="20"
+          height="19"
+          viewBox="0 0 18 17"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M3.6 0H14.4V3.6H3.6V0ZM2.7 4.5H15.3C16.794 4.5 18 5.706 18 7.2V12.6H14.4V16.2H3.6V12.6H0V7.2C0 5.706 1.206 4.5 2.7 4.5ZM5.4 14.4H12.6V9.9H5.4V14.4ZM15.3 8.1C14.805 8.1 14.4 7.695 14.4 7.2C14.4 6.705 14.805 6.3 15.3 6.3C15.795 6.3 16.2 6.705 16.2 7.2C16.2 7.695 15.795 8.1 15.3 8.1Z"
+            fill="#202224"
+          />
+        </svg>
+      </button>
+      <button
+        style="border-radius: 10px"
+        type="button"
+        class="btn btn-primary"
+        data-mdb-ripple-init
+      >
+        <span style="margin: 0 15px">send</span
+        ><span>
+          <svg
+            width="36"
+            height="28"
+            viewBox="0 0 46 38"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="36" height="28" fill="black" />
+            <rect
+              width="1440"
+              height="1080"
+              transform="translate(-1338 -776)"
+              fill="#FAFAFA"
+            />
+            <rect
+              x="-1053.85"
+              y="-610.85"
+              width="1139.7"
+              height="868.7"
+              rx="13.85"
+              fill="white"
+              stroke="#B9B9B9"
+              stroke-width="0.3"
+            />
+            <rect
+              x="-119"
+              y="-8"
+              width="173"
+              height="54"
+              rx="12"
+              fill="#4880FF"
+            />
+            <rect width="46" height="38" rx="8" fill="#6E9AFF" />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M16.5051 19.316L21.4504 20.5523L22.6867 25.4976C22.8385 26.1048 23.668 26.187 23.936 25.6213L29.936 12.9546C30.2041 12.3885 29.6142 11.7985 29.0481 12.0667L16.3814 18.0667C15.8157 18.3347 15.8978 19.1641 16.5051 19.316ZM22.1618 19.3558L18.6357 18.4742L27.9319 14.0708L23.5284 23.367L22.6469 19.8408C22.5872 19.602 22.4007 19.4155 22.1618 19.3558Z"
+              fill="white"
+            />
+            <mask
+              id="mask0_0_1"
+              style="mask-type: luminance"
+              maskUnits="userSpaceOnUse"
+              x="16"
+              y="12"
+              width="15"
+              height="15"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M16.5051 19.316L21.4504 20.5523L22.6867 25.4976C22.8385 26.1048 23.668 26.187 23.936 25.6213L29.936 12.9546C30.2041 12.3885 29.6142 11.7985 29.0481 12.0667L16.3814 18.0667C15.8157 18.3347 15.8978 19.1641 16.5051 19.316ZM22.1618 19.3558L18.6357 18.4742L27.9319 14.0708L23.5284 23.367L22.6469 19.8408C22.5872 19.602 22.4007 19.4155 22.1618 19.3558Z"
+                fill="white"
+              />
+            </mask>
+            <g mask="url(#mask0_0_1)"></g>
+          </svg>
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+{%endblock%}

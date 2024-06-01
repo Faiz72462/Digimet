@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {% block title %} Create Product Stock {% endblock %}
+<!-- heading -->
+{%block heading %} Create Product Stock{%endblock%}
+<!-- content -->
+{%block content%}
+<div
+  style="
+    border: 0.5px solid rgb(196, 191, 191);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    min-height: 80vh;
+  "
+>
+  <div class="row">
+    <div class="col-lg-12 mt-3">
+      <p class="f-weight">Product</p>
+      <input
+        class="form-control"
+        type="text"
+        id="salesOrderNo"
+        name="salesOrderNo"
+      />
+    </div>
+    <div class="col-lg-12 mt-3">
+      <p class="f-weight">Quantity</p>
+      <input
+        class="form-control"
+        type="text"
+        id="salesOrderNo"
+        name="salesOrderNo"
+      />
+    </div>
+    <div class="col-lg-12 mt-3">
+      <p class="f-weight">Cost per Single</p>
+      <input
+        class="form-control"
+        type="text"
+        id="salesOrderNo"
+        name="salesOrderNo"
+      />
+    </div>
+  </div>
+
+  <div style="margin-top: 16%; text-align: right">
+    <button
+      style="border-radius: 10px; margin-top: 2%"
+      type="button"
+      class="btn btn-outline-secondary text-primary btn-custom"
+    >
+      Previous
+    </button>
+    <button
+      style="border-radius: 10px; margin-top: 2%"
+      type="button"
+      class="btn btn-primary btn-custom"
+      data-mdb-ripple-init
+    >
+      <span style="margin: 0 15px">Create Product Stock</span>
+    </button>
+  </div>
+</div>
+{%endblock%}

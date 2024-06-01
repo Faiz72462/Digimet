@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Primary Group</title>
+
+    <title>{% block title %}Title{% endblock %}</title>
+
     <style>
       body {
         background-color: #000;
-        display: flex;
+        display: flex !important;
       }
       #sidebar {
+        height: fit-content;
         min-width: 260px;
         max-width: 260px;
         background: #fff;
@@ -27,6 +30,7 @@
         /* border-bottom: 1px solid #ddd; */
       }
       #sidebar ul.components {
+        margin-bottom: 0;
         padding: 20px 0;
         border-bottom: 1px solid #ddd;
       }
@@ -92,10 +96,112 @@
         table-layout: auto;
         width: 100%;
       }
+      @media (max-width: 992px) {
+        .dropdown-menu {
+          position: absolute !important;
+        }
+      }
+      @media (max-width: 625px) {
+        .button-container {
+          text-align: center;
+        }
 
+        .btn-custom {
+          width: 100%;
+          margin-top: 10px;
+        }
+
+        .btn-create span {
+          margin: 0;
+        }
+      }
+      @media print {
+        body * {
+          visibility: hidden;
+        }
+        #printableTable,
+        #printableTable * {
+          visibility: visible;
+        }
+        #printableTable {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+        }
+      }
       th,
       td {
         white-space: nowrap;
+      }
+      /* darkmode styling */
+      .dark-mode {
+        background-color: #333 !important;
+        color: #fff !important;
+      }
+      .dark-mode body {
+        background-color: #333;
+        color: #fff;
+      }
+      .dark-mode nav {
+        background-color: #333 !important;
+      }
+      .dark-mode .container {
+        background-color: #333 !important;
+      }
+
+      .dark-mode .navbar-dark {
+        background-color: #333 !important;
+      }
+
+      /* Additional dark mode styles for navigation links */
+      .dark-mode .navbar-nav .nav-link {
+        background-color: #333 !important;
+        color: #fff !important;
+      }
+
+      /* Additional dark mode styles for tables */
+      .dark-mode .table {
+        background-color: #333;
+        color: #fff;
+      }
+      .dark-mode .table th {
+        background-color: #333;
+        color: #fff;
+      }
+
+      .dark-mode .sidebar {
+        margin-bottom: 0;
+        background-color: #333 !important;
+      }
+      .dark-mode .sidebar-header {
+        background-color: #333 !important;
+        color: #fff;
+      }
+      .dark-mode .components {
+        border-bottom: 1px solid #333;
+
+        background-color: #333 !important;
+      }
+
+      .dark-mode .components a,
+      .dark-mode .components p {
+        color: #fff !important;
+      }
+
+      /* Additional dark mode styles for custom divs */
+      .dark-mode .btn-primary {
+        border-color: #333;
+        background-color: #000 !important;
+      }
+      .dark-mode input,
+      .dark-mode select,
+      .dark-mode option,
+      .dark-mode .page-link,
+      .dark-mode .dropdown-item,
+      .dark-mode .Notify {
+        color: white !important;
+        background-color: #222 !important;
       }
     </style>
     <link
@@ -107,6 +213,14 @@
       rel="stylesheet"
       integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
       crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
     />
   </head>
   <body>
@@ -251,68 +365,69 @@
               xmlns="http://www.w3.org/2000/svg"
             >
               <ellipse
-                cx="8.24992"
+                cx="8.25016"
                 cy="6.41667"
                 rx="3.66667"
                 ry="3.66667"
-                stroke="#23272E"
+                stroke="#8B909A"
                 stroke-width="1.75"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
               <ellipse
-                cx="8.24992"
+                cx="8.25016"
                 cy="6.41667"
                 rx="3.66667"
                 ry="3.66667"
-                stroke="#23272E"
+                stroke="#8B909A"
                 stroke-width="1.75"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
               <path
                 d="M2.75 19.25V17.4167C2.75 15.3916 4.39162 13.75 6.41667 13.75H10.0833C12.1084 13.75 13.75 15.3916 13.75 17.4167V19.25"
-                stroke="#23272E"
+                stroke="#8B909A"
                 stroke-width="1.75"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
               <path
                 d="M2.75 19.25V17.4167C2.75 15.3916 4.39162 13.75 6.41667 13.75H10.0833C12.1084 13.75 13.75 15.3916 13.75 17.4167V19.25"
-                stroke="#23272E"
+                stroke="#8B909A"
                 stroke-width="1.75"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
               <path
-                d="M14.6667 2.86906C16.2892 3.28447 17.4239 4.74638 17.4239 6.42114C17.4239 8.0959 16.2892 9.55782 14.6667 9.97323"
-                stroke="#23272E"
+                d="M14.6665 2.86906C16.2889 3.28447 17.4237 4.74638 17.4237 6.42114C17.4237 8.0959 16.2889 9.55782 14.6665 9.97323"
+                stroke="#8B909A"
                 stroke-width="1.75"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
               <path
-                d="M14.6667 2.86906C16.2892 3.28447 17.4239 4.74638 17.4239 6.42114C17.4239 8.0959 16.2892 9.55782 14.6667 9.97323"
-                stroke="#23272E"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M19.25 19.2499V17.4166C19.2404 15.7524 18.1113 14.3034 16.5 13.8874"
-                stroke="#23272E"
+                d="M14.6665 2.86906C16.2889 3.28447 17.4237 4.74638 17.4237 6.42114C17.4237 8.0959 16.2889 9.55782 14.6665 9.97323"
+                stroke="#8B909A"
                 stroke-width="1.75"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
               <path
                 d="M19.25 19.2499V17.4166C19.2404 15.7524 18.1113 14.3034 16.5 13.8874"
-                stroke="#23272E"
+                stroke="#8B909A"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M19.25 19.2499V17.4166C19.2404 15.7524 18.1113 14.3034 16.5 13.8874"
+                stroke="#8B909A"
                 stroke-width="1.75"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
             </svg>
+
             Manager</a
           >
         </li>
@@ -816,18 +931,49 @@
               class="btn btn-outline-dark"
             >
               <i class="fas fa-align-left"></i>
-              <span class="navbar-toggler-icon"></span>
             </button>
-            <h2 class="ms-3 mb-0">Primary Group</h2>
+
+            <h2 class="ms-3 mb-0">{% block heading %}Heading{% endblock %}</h2>
           </div>
           <div class="div-links">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="#"
-                  ><box-icon name="bell"></box-icon
-                ></a>
+                <!-- <div class="dropdown"> -->
+                <button
+                  class="btn"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <box-icon name="bell"></box-icon>
+                </button>
+                <ul
+                  class="Notify dropdown-menu dropdown-menu-end"
+                  aria-labelledby="dropdownMenuButton"
+                >
+                  <li><p class="dropdown-item">Notification 1</p></li>
+                  <li><p class="dropdown-item">Notification 2</p></li>
+                  <li><p class="dropdown-item">Notification 3</p></li>
+                  <li><p class="dropdown-item">Notification 4</p></li>
+                  <li><p class="dropdown-item">Notification 5</p></li>
+                  <li><p class="dropdown-item">Notification 6</p></li>
+                  <li><p class="dropdown-item">Notification 7</p></li>
+                  <li><p class="dropdown-item">Notification 8</p></li>
+                  <li><p class="dropdown-item">Notification 9</p></li>
+                  <li><p class="dropdown-item">Notification 10</p></li>
+                </ul>
+                <!-- </div> -->
               </li>
-              <li class="nav-item"></li>
+
+              <li class="nav-item">
+                <button
+                  id="darkModeButton"
+                  class="btn btn-outline-light toggle-icon"
+                >
+                  <i class="fas fa-moon" style="color: #000"></i>
+                </button>
+              </li>
             </ul>
           </div>
         </div>
@@ -856,6 +1002,8 @@
           </div>
         </div>
       </nav>
+      {%block content%}
+
       <div class="table-responsive">
         <table class="table">
           <thead>
@@ -2399,6 +2547,7 @@
           </nav>
         </div>
       </div>
+      {%endblock%}
     </div>
     <!-- </div> -->
 
@@ -2412,8 +2561,9 @@
       integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
       crossorigin="anonymous"
     ></script>
-    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
     <script>
       $(document).ready(function () {
@@ -2421,6 +2571,51 @@
           $("#sidebar").toggleClass("active");
         });
       });
+
+      $(document).ready(function () {
+        // Check if dark mode preference is stored in local storage
+        var darkModeEnabled = localStorage.getItem("darkModeEnabled");
+
+        // If dark mode preference exists, update UI accordingly
+        if (darkModeEnabled === "true") {
+          $("body").addClass("dark-mode");
+          $("#darkModeButton")
+            .find("i")
+            .removeClass("fa-moon")
+            .addClass("fa-sun");
+        } else {
+          $("body").removeClass("dark-mode");
+          $("#darkModeButton")
+            .find("i")
+            .removeClass("fa-sun")
+            .addClass("fa-moon");
+        }
+
+        // Show the body content after ensuring dark mode state
+
+        // Toggle dark mode and store preference in local storage
+        $("#darkModeButton").click(function () {
+          if ($("body").hasClass("dark-mode")) {
+            $("body").removeClass("dark-mode");
+            $("#darkModeButton")
+              .find("i")
+              .removeClass("fa-sun")
+              .addClass("fa-moon");
+            localStorage.setItem("darkModeEnabled", "false");
+          } else {
+            $("body").addClass("dark-mode");
+            $("#darkModeButton")
+              .find("i")
+              .removeClass("fa-moon")
+              .addClass("fa-sun");
+            localStorage.setItem("darkModeEnabled", "true");
+          }
+        });
+      });
+
+      function printTable() {
+        window.print();
+      }
     </script>
   </body>
 </html>

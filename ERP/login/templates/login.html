@@ -22,15 +22,27 @@
 
       .left-side {
         /* background: url(/ERP/login/templates/images/rock.png), */
-        background: url('{% static "images/rock.png" %}'),
-          linear-gradient(
-            to bottom right,
-            rgba(106, 17, 203, 0.7),
-            rgba(37, 117, 252, 0.7)
-          );
+        background: linear-gradient(
+          to bottom right,
+          rgba(106, 17, 203, 0.7),
+          rgba(37, 117, 252, 0.7)
+        );
         background-size: cover;
         background-position: center;
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center;
         height: 100%;
+      }
+      .image {
+        height: 100%;
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center;
+      }
+      img {
+        width: 50%;
+        height: 50%;
       }
 
       .login-form {
@@ -65,7 +77,11 @@
   <body>
     <div class="container-fluid vh-100">
       <div class="row h-100">
-        <div class="col-lg-7 col-md-6 d-none d-md-block left-side"></div>
+        <div class="col-lg-7 col-md-6 d-none d-md-block left-side">
+          <div class="image">
+            <img src='{% static "images/rock.png" %}' alt="" />
+          </div>
+        </div>
         <div
           class="col-lg-5 col-md-6 col-12 d-flex align-items-center justify-content-center"
         >
