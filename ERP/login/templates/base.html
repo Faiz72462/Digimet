@@ -1,5 +1,6 @@
+'{% load static %}'
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,48 +13,75 @@
         display: flex !important;
       }
       #sidebar {
-        height: fit-content;
-        min-width: 260px;
-        max-width: 260px;
+        min-width: 300px;
+        max-width: 300px;
         background: #fff;
         color: #000;
         transition: all 0.3s;
         border-right: 1px solid #ddd;
       }
-      #sidebar.active {
-        margin-left: -260px;
-      }
-
-      #sidebar .sidebar-header {
-        padding: 20px;
-        background: #f8f9fa;
-        /* border-bottom: 1px solid #ddd; */
-      }
-      #sidebar ul.components {
-        margin-bottom: 0;
+      #sidebar .accordion {
         padding: 20px 0;
         border-bottom: 1px solid #ddd;
       }
-      #sidebar ul p {
+
+      #sidebar.active {
+        margin-left: -300px;
+      }
+
+      #sidebar .sidebar-header {
+        padding: 35px;
+        background: #f8f9fa;
+      }
+
+      #sidebar .accordion {
+        padding: 20px 0;
+        border-bottom: 1px solid #ddd;
+      }
+      #sidebar p {
         font-size: 0.7em;
         color: #000;
         padding: 10px 50px;
       }
-      #sidebar ul li svg {
+      #sidebar .accordion-header svg {
         color: #000;
-        margin-bottom: 6px;
+        margin: 6px 15px 6px 6px;
       }
-      #sidebar ul li a {
+      #sidebar .accordion-button {
         text-decoration: none;
         padding: 10px 30px;
         font-size: 1.1em;
-        display: block;
+        /* display: block; */
         color: #000;
+        background: none;
+        border: none;
       }
-      #sidebar ul li a:hover {
-        /* color: #007bff; */
+      #sidebar .accordion-button:hover {
         background: #bfbfc0;
       }
+      #sidebar .accordion-body a {
+        text-decoration: none;
+        color: #000;
+        display: block;
+        padding: 5px 0;
+      }
+      .accordion {
+        --bs-accordion-border-color: none !important;
+      }
+      .accordion-button:focus {
+        box-shadow: none !important;
+      }
+
+      .list-unstyled li {
+        padding-left: 50px;
+        margin-bottom: 10px;
+      }
+      .list-unstyled li:hover {
+        background-color: #bfbfc0;
+      }
+      /* #sidebar .accordion-body a:hover {
+        color: #007bff;
+      } */
       .navbar {
         margin-bottom: 1.5rem !important;
         padding-left: 0 !important;
@@ -97,13 +125,22 @@
         width: 100%;
       }
       @media (max-width: 992px) {
-        .dropdown-menu {
+        .Notify.dropdown-menu {
           position: absolute !important;
+          top: auto !important;
+          right: auto !important;
         }
       }
       @media (max-width: 625px) {
         .button-container {
           text-align: center;
+        }
+
+        @media (max-width: 328px) {
+          .Notify.dropdown-menu {
+            top: auto !important;
+            right: auto !important;
+          }
         }
 
         .btn-custom {
@@ -178,14 +215,24 @@
         background-color: #333 !important;
         color: #fff;
       }
-      .dark-mode .components {
+      .dark-mode .accordion {
         border-bottom: 1px solid #333;
-
         background-color: #333 !important;
       }
+      .dark-mode .accordion-button,
+      .dark-mode .accordion-body,
+      .dark-mode .accordion-body .dropdown-item {
+        background-color: #333 !important;
+        color: #fff !important;
+      }
+      .dark-mode .accordion-body .dropdown-item:hover,
+      .dark-mode .accordion-button:hover {
+        color: #000 !important;
+        background-color: #bfbfc0 !important;
+      }
 
-      .dark-mode .components a,
-      .dark-mode .components p {
+      .dark-mode .accordion a,
+      .dark-mode .accordion p {
         color: #fff !important;
       }
 
@@ -244,679 +291,927 @@
           Digimet
         </h3>
       </div>
-      <ul class="list-unstyled components">
+      <div class="accordion" id="sidebarAccordion">
         <p>MAIN MENU</p>
-        <li>
-          <a href="#">
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 22 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+        <div class="accordion-item">
+          <h6 class="accordion-header" id="headingOne">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
             >
-              <path
-                d="M17.4166 7.98418L12.528 4.18185C11.6454 3.49524 10.4094 3.49524 9.52684 4.18185L4.63734 7.98418C4.04188 8.44725 3.69374 9.15944 3.69409 9.91376V16.5138C3.69409 17.5263 4.5149 18.3471 5.52743 18.3471H16.5274C17.5399 18.3471 18.3608 17.5263 18.3608 16.5138V9.91376C18.3608 9.15935 18.0124 8.4471 17.4166 7.98418"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M14.6666 13.7499C12.6408 14.9718 9.35725 14.9718 7.33325 13.7499"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.4166 7.98418L12.528 4.18185C11.6454 3.49524 10.4094 3.49524 9.52684 4.18185L4.63734 7.98418C4.04188 8.44725 3.69374 9.15944 3.69409 9.91376V16.5138C3.69409 17.5263 4.5149 18.3471 5.52743 18.3471H16.5274C17.5399 18.3471 18.3608 17.5263 18.3608 16.5138V9.91376C18.3608 9.15935 18.0124 8.4471 17.4166 7.98418"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M14.6666 13.7499C12.6408 14.9718 9.35725 14.9718 7.33325 13.7499"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Dashboard
+            </button>
+          </h6>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingOne"
+          >
+            <div class="accordion-body">
+              <ul class="list-unstyled">
+                <li>
+                  <a class="dropdown-item" href="{% url 'homepage' %}">Home</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'Primary-group' %}"
+                    >Inventory Report</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{% url 'Sales-order-information'%}"
+                    >Sales Report</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Purchase-invoice'%}"
+                    >Purchase Report</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{%url 'Product-stock-entries'%}"
+                    >Production Report</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-            Dashboard</a
-          >
-        </li>
-        <li>
-          <a href="#">
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 22 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+        <p>FINANCE</p>
+        <div class="accordion-item">
+          <h6 class="accordion-header" id="headingThree">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseThree"
+              aria-expanded="false"
+              aria-controls="collapseThree"
             >
-              <ellipse
-                cx="5.50008"
-                cy="17.4167"
-                rx="1.83333"
-                ry="1.83333"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <ellipse
-                cx="5.50008"
-                cy="17.4167"
-                rx="1.83333"
-                ry="1.83333"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <ellipse
-                cx="15.5833"
-                cy="17.4167"
-                rx="1.83333"
-                ry="1.83333"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <ellipse
-                cx="15.5833"
-                cy="17.4167"
-                rx="1.83333"
-                ry="1.83333"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M15.5834 15.5833H5.50008V2.75H3.66675"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M15.5834 15.5833H5.50008V2.75H3.66675"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M5.5 4.58333L18.3333 5.5L17.4167 11.9167H5.5"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M5.5 4.58333L18.3333 5.5L17.4167 11.9167H5.5"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            Order Management</a
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <ellipse
+                  cx="5.50008"
+                  cy="17.4167"
+                  rx="1.83333"
+                  ry="1.83333"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <ellipse
+                  cx="5.50008"
+                  cy="17.4167"
+                  rx="1.83333"
+                  ry="1.83333"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <ellipse
+                  cx="15.5833"
+                  cy="17.4167"
+                  rx="1.83333"
+                  ry="1.83333"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <ellipse
+                  cx="15.5833"
+                  cy="17.4167"
+                  rx="1.83333"
+                  ry="1.83333"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M15.5834 15.5833H5.50008V2.75H3.66675"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M15.5834 15.5833H5.50008V2.75H3.66675"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M5.5 4.58333L18.3333 5.5L17.4167 11.9167H5.5"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M5.5 4.58333L18.3333 5.5L17.4167 11.9167H5.5"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Accounts
+            </button>
+          </h6>
+          <div
+            id="collapseThree"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingThree"
           >
-        </li>
-        <li class="active">
-          <a href="#">
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 22 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            <div class="accordion-body">
+              <ul class="list-unstyled">
+                <li>
+                  <a class="dropdown-item" href="{%url 'Account-group'%}"
+                    >Account Group</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Account-ledger'%}"
+                    >Account Ledger</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'General-ledger'%}"
+                    >General Ledger</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'General-ledger2'%}"
+                    >General Ledger2</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Journal-entries'%}"
+                    >Journal Entries</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h6 class="accordion-header" id="headingFour">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseFour"
+              aria-expanded="false"
+              aria-controls="collapseFour"
             >
-              <ellipse
-                cx="8.25016"
-                cy="6.41667"
-                rx="3.66667"
-                ry="3.66667"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <ellipse
-                cx="8.25016"
-                cy="6.41667"
-                rx="3.66667"
-                ry="3.66667"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M2.75 19.25V17.4167C2.75 15.3916 4.39162 13.75 6.41667 13.75H10.0833C12.1084 13.75 13.75 15.3916 13.75 17.4167V19.25"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M2.75 19.25V17.4167C2.75 15.3916 4.39162 13.75 6.41667 13.75H10.0833C12.1084 13.75 13.75 15.3916 13.75 17.4167V19.25"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M14.6665 2.86906C16.2889 3.28447 17.4237 4.74638 17.4237 6.42114C17.4237 8.0959 16.2889 9.55782 14.6665 9.97323"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M14.6665 2.86906C16.2889 3.28447 17.4237 4.74638 17.4237 6.42114C17.4237 8.0959 16.2889 9.55782 14.6665 9.97323"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M19.25 19.2499V17.4166C19.2404 15.7524 18.1113 14.3034 16.5 13.8874"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M19.25 19.2499V17.4166C19.2404 15.7524 18.1113 14.3034 16.5 13.8874"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-
-            Manager</a
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M13.7501 4.58334V6.41667"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M13.7501 4.58334V6.41667"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M13.7501 10.0833V11.9167"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M13.7501 10.0833V11.9167"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M13.7501 15.5833V17.4167"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M13.7501 15.5833V17.4167"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M4.58333 4.58334H17.4167C18.4292 4.58334 19.25 5.40415 19.25 6.41667V9.16667C18.2375 9.16667 17.4167 9.98748 17.4167 11C17.4167 12.0125 18.2375 12.8333 19.25 12.8333V15.5833C19.25 16.5959 18.4292 17.4167 17.4167 17.4167H4.58333C3.57081 17.4167 2.75 16.5959 2.75 15.5833V12.8333C3.76252 12.8333 4.58333 12.0125 4.58333 11C4.58333 9.98748 3.76252 9.16667 2.75 9.16667V6.41667C2.75 5.40415 3.57081 4.58334 4.58333 4.58334"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M4.58333 4.58334H17.4167C18.4292 4.58334 19.25 5.40415 19.25 6.41667V9.16667C18.2375 9.16667 17.4167 9.98748 17.4167 11C17.4167 12.0125 18.2375 12.8333 19.25 12.8333V15.5833C19.25 16.5959 18.4292 17.4167 17.4167 17.4167H4.58333C3.57081 17.4167 2.75 16.5959 2.75 15.5833V12.8333C3.76252 12.8333 4.58333 12.0125 4.58333 11C4.58333 9.98748 3.76252 9.16667 2.75 9.16667V6.41667C2.75 5.40415 3.57081 4.58334 4.58333 4.58334"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Finance
+            </button>
+          </h6>
+          <div
+            id="collapseFour"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingFour"
           >
-        </li>
-        <li>
-          <a href="#">
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 22 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            <div class="accordion-body">
+              <ul class="list-unstyled">
+                <li>
+                  <a class="dropdown-item" href="{%url 'Add-payment'%}"
+                    >Add payment</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Add-receipt'%}"
+                    >Add receipts</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'View-payment'%}"
+                    >View payment</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'View-receipt'%}"
+                    >View receipt</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Invoice'%}">Invoice</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h6 class="accordion-header" id="headingFive">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseFive"
+              aria-expanded="false"
+              aria-controls="collapseFive"
             >
-              <path
-                d="M13.7501 4.58334V6.41667"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M13.7501 4.58334V6.41667"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M13.7501 10.0833V11.9167"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M13.7501 10.0833V11.9167"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M13.7501 15.5833V17.4167"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M13.7501 15.5833V17.4167"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M4.58333 4.58334H17.4167C18.4292 4.58334 19.25 5.40415 19.25 6.41667V9.16667C18.2375 9.16667 17.4167 9.98748 17.4167 11C17.4167 12.0125 18.2375 12.8333 19.25 12.8333V15.5833C19.25 16.5959 18.4292 17.4167 17.4167 17.4167H4.58333C3.57081 17.4167 2.75 16.5959 2.75 15.5833V12.8333C3.76252 12.8333 4.58333 12.0125 4.58333 11C4.58333 9.98748 3.76252 9.16667 2.75 9.16667V6.41667C2.75 5.40415 3.57081 4.58334 4.58333 4.58334"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M4.58333 4.58334H17.4167C18.4292 4.58334 19.25 5.40415 19.25 6.41667V9.16667C18.2375 9.16667 17.4167 9.98748 17.4167 11C17.4167 12.0125 18.2375 12.8333 19.25 12.8333V15.5833C19.25 16.5959 18.4292 17.4167 17.4167 17.4167H4.58333C3.57081 17.4167 2.75 16.5959 2.75 15.5833V12.8333C3.76252 12.8333 4.58333 12.0125 4.58333 11C4.58333 9.98748 3.76252 9.16667 2.75 9.16667V6.41667C2.75 5.40415 3.57081 4.58334 4.58333 4.58334"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            Coupon Code</a
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8.70833"
+                  cy="8.70833"
+                  r="5.95833"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <circle
+                  cx="8.70833"
+                  cy="8.70833"
+                  r="5.95833"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="9.16675"
+                  y="9.16666"
+                  width="10.0833"
+                  height="10.0833"
+                  rx="2"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <rect
+                  x="9.16675"
+                  y="9.16666"
+                  width="10.0833"
+                  height="10.0833"
+                  rx="2"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Purchasing
+            </button>
+          </h6>
+          <div
+            id="collapseFive"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingFive"
           >
-        </li>
-        <li>
-          <a href="#">
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 22 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            <div class="accordion-body">
+              <ul class="list-unstyled">
+                <li>
+                  <a class="dropdown-item" href="{%url 'Purchase-order'%}"
+                    >Purchase order</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Purchase-invoice'%}"
+                    >Purchase invoice</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Purchase-return'%}"
+                    >Purchase return</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h6 class="accordion-header" id="headingSix">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseSix"
+              aria-expanded="false"
+              aria-controls="collapseSix"
             >
-              <circle
-                cx="8.70833"
-                cy="8.70833"
-                r="5.95833"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <circle
-                cx="8.70833"
-                cy="8.70833"
-                r="5.95833"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <rect
-                x="9.16675"
-                y="9.16666"
-                width="10.0833"
-                height="10.0833"
-                rx="2"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <rect
-                x="9.16675"
-                y="9.16666"
-                width="10.0833"
-                height="10.0833"
-                rx="2"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            Categories</a
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12.8333 2.75V6.41667C12.8333 6.92293 13.2437 7.33333 13.7499 7.33333H17.4166"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12.8333 2.75V6.41667C12.8333 6.92293 13.2437 7.33333 13.7499 7.33333H17.4166"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5833 19.25H6.41659C5.40406 19.25 4.58325 18.4292 4.58325 17.4167V4.58333C4.58325 3.57081 5.40406 2.75 6.41659 2.75H12.8333L17.4166 7.33333V17.4167C17.4166 18.4292 16.5958 19.25 15.5833 19.25Z"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M15.5833 19.25H6.41659C5.40406 19.25 4.58325 18.4292 4.58325 17.4167V4.58333C4.58325 3.57081 5.40406 2.75 6.41659 2.75H12.8333L17.4166 7.33333V17.4167C17.4166 18.4292 16.5958 19.25 15.5833 19.25Z"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8.25 8.25001H9.16667"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8.25 8.25001H9.16667"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8.25 11.9167H13.75"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8.25 11.9167H13.75"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8.25 15.5833H13.75"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8.25 15.5833H13.75"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Sales
+            </button>
+          </h6>
+          <div
+            id="collapseSix"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingSix"
           >
-        </li>
-        <li>
-          <a href="#">
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 22 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12.8333 2.75V6.41667C12.8333 6.92293 13.2437 7.33333 13.7499 7.33333H17.4166"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M12.8333 2.75V6.41667C12.8333 6.92293 13.2437 7.33333 13.7499 7.33333H17.4166"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M15.5833 19.25H6.41659C5.40406 19.25 4.58325 18.4292 4.58325 17.4167V4.58333C4.58325 3.57081 5.40406 2.75 6.41659 2.75H12.8333L17.4166 7.33333V17.4167C17.4166 18.4292 16.5958 19.25 15.5833 19.25Z"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M15.5833 19.25H6.41659C5.40406 19.25 4.58325 18.4292 4.58325 17.4167V4.58333C4.58325 3.57081 5.40406 2.75 6.41659 2.75H12.8333L17.4166 7.33333V17.4167C17.4166 18.4292 16.5958 19.25 15.5833 19.25Z"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M8.25 8.25001H9.16667"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M8.25 8.25001H9.16667"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M8.25 11.9167H13.75"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M8.25 11.9167H13.75"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M8.25 15.5833H13.75"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M8.25 15.5833H13.75"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-
-            Transaction</a
-          >
-        </li>
-        <li>
-          <a href="#">
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 22 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M11.0001 16.2708L5.34243 19.2454L6.42318 12.9451L1.83984 8.48371L8.16484 7.56705L10.9937 1.83513L13.8225 7.56705L20.1475 8.48371L15.5642 12.9451L16.6449 19.2454L11.0001 16.2708Z"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M11.0001 16.2708L5.34243 19.2454L6.42318 12.9451L1.83984 8.48371L8.16484 7.56705L10.9937 1.83513L13.8225 7.56705L20.1475 8.48371L15.5642 12.9451L16.6449 19.2454L11.0001 16.2708Z"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            Brand</a
-          >
-        </li>
+            <div class="accordion-body">
+              <ul class="list-unstyled">
+                <li>
+                  <a class="dropdown-item" href="{%url 'Create-quotation'%}"
+                    >Create quotation</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Sale-quotations'%}"
+                    >Sale quotation</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{%url 'Sales-order-information'%}"
+                    >Sales order info</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Accepted-orders'%}"
+                    >Accepted orders</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <p>PRODUCTS</p>
-        <li>
-          <a href="#">
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 22 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+        <div class="accordion-item">
+          <h6 class="accordion-header" id="headingSeven">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseSeven"
+              aria-expanded="false"
+              aria-controls="collapseSeven"
             >
-              <circle
-                cx="11"
-                cy="11"
-                r="8.25"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <circle
-                cx="11"
-                cy="11"
-                r="8.25"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M8.25 11H13.75"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M8.25 11H13.75"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M11.0001 8.25V13.75"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M11.0001 8.25V13.75"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            Add Products</a
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M11.0001 16.2708L5.34243 19.2454L6.42318 12.9451L1.83984 8.48371L8.16484 7.56705L10.9937 1.83513L13.8225 7.56705L20.1475 8.48371L15.5642 12.9451L16.6449 19.2454L11.0001 16.2708Z"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M11.0001 16.2708L5.34243 19.2454L6.42318 12.9451L1.83984 8.48371L8.16484 7.56705L10.9937 1.83513L13.8225 7.56705L20.1475 8.48371L15.5642 12.9451L16.6449 19.2454L11.0001 16.2708Z"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Orders
+            </button>
+          </h6>
+          <div
+            id="collapseSeven"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingSeven"
           >
-        </li>
-        <li>
-          <a href="#">
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 22 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            <div class="accordion-body">
+              <ul class="list-unstyled">
+                <li>
+                  <a class="dropdown-item" href="{%url 'Create-order'%}"
+                    >Create orders</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Pending-allocation'%}"
+                    >Pending allocation</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h6 class="accordion-header" id="headingEight">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseEight"
+              aria-expanded="false"
+              aria-controls="collapseEight"
             >
-              <path
-                d="M11.0001 2.75L18.3334 6.875V15.125L11.0001 19.25L3.66675 15.125V6.875L11.0001 2.75"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M11.0001 2.75L18.3334 6.875V15.125L11.0001 19.25L3.66675 15.125V6.875L11.0001 2.75"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M11 11L18.3333 6.875"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M11 11L18.3333 6.875"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M11.0001 11V19.25"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M11.0001 11V19.25"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M11.0001 11L3.66675 6.875"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M11.0001 11L3.66675 6.875"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            Product List</a
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="8.25"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="8.25"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8.25 11H13.75"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M8.25 11H13.75"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M11.0001 8.25V13.75"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M11.0001 8.25V13.75"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Inventory
+            </button>
+          </h6>
+          <div
+            id="collapseEight"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingEight"
           >
-        </li>
+            <div class="accordion-body">
+              <ul class="list-unstyled">
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{%url 'Add-material-to-product'%}"
+                    >Add material to product</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Add-services'%}"
+                    >Add services</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Brand-and-category'%}"
+                    >Brand and category</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{%url 'Create-material-stock'%}"
+                    >Create materials stock</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Create-product-stock'%}"
+                    >Create products stock</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{%url 'Material-stock-entries'%}"
+                    >Material stock entries</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Product-creation'%}"
+                    >Product creation</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Product-creation2'%}"
+                    >Product creation2</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="{%url 'Product-stock-entries'%}"
+                    >Product stock entries</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         <p>ADMIN</p>
-        <li>
-          <a href="#">
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 22 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+        <div class="accordion-item">
+          <h6 class="accordion-header" id="headingTwo">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo"
+              aria-expanded="false"
+              aria-controls="collapseTwo"
             >
-              <circle
-                cx="11"
-                cy="11"
-                r="8.25"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <circle
-                cx="11"
-                cy="11"
-                r="8.25"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <ellipse
-                cx="11"
-                cy="9.16666"
-                rx="2.75"
-                ry="2.75"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <ellipse
-                cx="11"
-                cy="9.16666"
-                rx="2.75"
-                ry="2.75"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M5.65405 17.2782C6.11994 15.7277 7.54766 14.6662 9.16672 14.6667H12.8334C14.4546 14.6661 15.8838 15.7303 16.3479 17.2837"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M5.65405 17.2782C6.11994 15.7277 7.54766 14.6662 9.16672 14.6667H12.8334C14.4546 14.6661 15.8838 15.7303 16.3479 17.2837"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            Manage Admins</a
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <ellipse
+                  cx="8.24967"
+                  cy="6.41667"
+                  rx="3.66667"
+                  ry="3.66667"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <ellipse
+                  cx="8.24967"
+                  cy="6.41667"
+                  rx="3.66667"
+                  ry="3.66667"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M2.75 19.25V17.4167C2.75 15.3916 4.39162 13.75 6.41667 13.75H10.0833C12.1084 13.75 13.75 15.3916 13.75 17.4167V19.25"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M2.75 19.25V17.4167C2.75 15.3916 4.39162 13.75 6.41667 13.75H10.0833C12.1084 13.75 13.75 15.3916 13.75 17.4167V19.25"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M14.667 2.86906C16.2894 3.28447 17.4242 4.74638 17.4242 6.42114C17.4242 8.0959 16.2894 9.55782 14.667 9.97323"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M14.667 2.86906C16.2894 3.28447 17.4242 4.74638 17.4242 6.42114C17.4242 8.0959 16.2894 9.55782 14.667 9.97323"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M19.25 19.2499V17.4166C19.2404 15.7524 18.1113 14.3034 16.5 13.8874"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M19.25 19.2499V17.4166C19.2404 15.7524 18.1113 14.3034 16.5 13.8874"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Manager
+            </button>
+          </h6>
+          <div
+            id="collapseTwo"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingTwo"
           >
-        </li>
-        <li>
-          <a href="#">
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 22 22"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            <div class="accordion-body">
+              <ul class="list-unstyled">
+                <li>
+                  <a class="dropdown-item" href="{%url 'Job-list'%}"
+                    >Job List</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h6 class="accordion-header" id="headingTen">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseTen"
+              aria-expanded="false"
+              aria-controls="collapseTen"
             >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M9.46458 3.95725C9.85508 2.34758 12.1449 2.34758 12.5354 3.95725C12.6543 4.44772 13.0002 4.85194 13.4664 5.0451C13.9327 5.23826 14.4631 5.19713 14.894 4.93442C16.3084 4.07275 17.9282 5.69158 17.0665 7.10692C16.8042 7.53762 16.7631 8.06766 16.9561 8.5336C17.149 8.99954 17.5527 9.34542 18.0428 9.46458C19.6524 9.85508 19.6524 12.1449 18.0428 12.5354C17.5523 12.6543 17.1481 13.0002 16.9549 13.4664C16.7617 13.9327 16.8029 14.4631 17.0656 14.894C17.9272 16.3084 16.3084 17.9282 14.8931 17.0665C14.4624 16.8042 13.9323 16.7631 13.4664 16.9561C13.0005 17.149 12.6546 17.5527 12.5354 18.0428C12.1449 19.6524 9.85508 19.6524 9.46458 18.0428C9.34574 17.5523 8.9998 17.1481 8.53357 16.9549C8.06734 16.7617 7.53689 16.8029 7.106 17.0656C5.69158 17.9272 4.07183 16.3084 4.9335 14.8931C5.19584 14.4624 5.23687 13.9323 5.04393 13.4664C4.851 13.0005 4.44727 12.6546 3.95725 12.5354C2.34758 12.1449 2.34758 9.85508 3.95725 9.46458C4.44772 9.34574 4.85194 8.9998 5.0451 8.53357C5.23826 8.06734 5.19713 7.53689 4.93442 7.106C4.07275 5.69158 5.69158 4.07183 7.10692 4.9335C8.02358 5.49083 9.21158 4.99767 9.46458 3.95725Z"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M9.46458 3.95725C9.85508 2.34758 12.1449 2.34758 12.5354 3.95725C12.6543 4.44772 13.0002 4.85194 13.4664 5.0451C13.9327 5.23826 14.4631 5.19713 14.894 4.93442C16.3084 4.07275 17.9282 5.69158 17.0665 7.10692C16.8042 7.53762 16.7631 8.06766 16.9561 8.5336C17.149 8.99954 17.5527 9.34542 18.0428 9.46458C19.6524 9.85508 19.6524 12.1449 18.0428 12.5354C17.5523 12.6543 17.1481 13.0002 16.9549 13.4664C16.7617 13.9327 16.8029 14.4631 17.0656 14.894C17.9272 16.3084 16.3084 17.9282 14.8931 17.0665C14.4624 16.8042 13.9323 16.7631 13.4664 16.9561C13.0005 17.149 12.6546 17.5527 12.5354 18.0428C12.1449 19.6524 9.85508 19.6524 9.46458 18.0428C9.34574 17.5523 8.9998 17.1481 8.53357 16.9549C8.06734 16.7617 7.53689 16.8029 7.106 17.0656C5.69158 17.9272 4.07183 16.3084 4.9335 14.8931C5.19584 14.4624 5.23687 13.9323 5.04393 13.4664C4.851 13.0005 4.44727 12.6546 3.95725 12.5354C2.34758 12.1449 2.34758 9.85508 3.95725 9.46458C4.44772 9.34574 4.85194 8.9998 5.0451 8.53357C5.23826 8.06734 5.19713 7.53689 4.93442 7.106C4.07275 5.69158 5.69158 4.07183 7.10692 4.9335C8.02358 5.49083 9.21158 4.99767 9.46458 3.95725Z"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <circle
-                cx="11"
-                cy="11"
-                r="2.75"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <circle
-                cx="11"
-                cy="11"
-                r="2.75"
-                stroke="#8B909A"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            Admin Roles</a
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="8.25"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="8.25"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <ellipse
+                  cx="11"
+                  cy="9.16666"
+                  rx="2.75"
+                  ry="2.75"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <ellipse
+                  cx="11"
+                  cy="9.16666"
+                  rx="2.75"
+                  ry="2.75"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M5.65405 17.2782C6.11994 15.7277 7.54766 14.6662 9.16672 14.6667H12.8334C14.4546 14.6661 15.8838 15.7303 16.3479 17.2837"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M5.65405 17.2782C6.11994 15.7277 7.54766 14.6662 9.16672 14.6667H12.8334C14.4546 14.6661 15.8838 15.7303 16.3479 17.2837"
+                  stroke="#8B909A"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Admin
+            </button>
+          </h6>
+          <div
+            id="collapseTen"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingTen"
           >
-        </li>
-      </ul>
+            <div class="accordion-body">
+              <ul class="list-unstyled">
+                <li>
+                  <a class="dropdown-item" href="{%url 'Customer'%}"
+                    >Customer</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Supplier'%}"
+                    >Supplier</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{%url 'Primary-group'%}"
+                    >Primary group</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- <div id="content"> -->
